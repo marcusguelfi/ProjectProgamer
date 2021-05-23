@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+	<ui:composition template="_template.xhtml">
+		<ui:define name="content">
+			<p:messages>
+				<p:autoUpdate />
+			</p:messages>
+			<h:form>
+				<p:card class="card-form">
+					<f:facet name="title">New Profile</f:facet>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Name" for="name" />
+						<p:inputText id="name" value="#{profileBean.profile.name}"
+							required="true">
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+
+						<p:outputLabel value="Birth Date" for="birthDate" />
+						<p:datePicker id="birthDate"
+							value="#{profileBean.profile.birthDate}" pattern="dd/MM/yyyy"
+							mask="true" required="true">
+							<f:ajax event="blur" render="messages" />
+						</p:datePicker>
+
+						<p:outputLabel value="Email" for="email" />
+						<p:inputText id="email" value="#{profileBean.profile.email}"
+							required="true">
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+
+						<p:outputLabel value="Password" for="password" />
+						<p:password id="password" value="#{profileBean.profile.password}"
+							toggleMask="true" redisplay="true" required="true">
+							<f:ajax event="blur" render="messages" />
+						</p:password>
+
+					</h:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton icon="pi pi-check" value="Save"
+							action="#{profileBean.save()}">
+							<f:ajax execute="@form" render="form-profiles" />
+						</p:commandButton>
+						<p:commandButton icon="pi pi-times" value="Cancel"
+							styleClass="ui-button-secondary" style="margin-left: .5em" />
+					</f:facet>
+				</p:card>
+			</h:form>
+
+			<div class="card">
+				<h:form id="form-profiles">
+					<p:dataTable id="profiles" var="profile"
+						value="#{profileBean.profiles}" rowKey="#{profile.id}"
+						selectionMode="single">
+						<f:facet name="header">
+				                Profile List
+				            </f:facet>
+						<p:column headerText="Name">
+							<h:outputText value="#{profile.name}" />
+						</p:column>
+
+						<p:column headerText="Birth Date">
+							<h:outputText value="#{profile.birthDate}" />
+						</p:column>
+
+						<p:column headerText="Email">
+							<h:outputText value="#{profile.email}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:contextMenu for="profiles">
+						<p:menuitem value="Delete" update="profiles" icon="pi pi-times"
+							action="#{profileBean.executar()}" />
+					</p:contextMenu>
+				</h:form>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

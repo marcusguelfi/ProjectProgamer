@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+<!-- 		<div class="card product"> -->
+<!-- 			<h:form id="form"> -->
+<!-- 				<p:dataView var="setup" value="#{setupBean.setups}" rows="5" -->
+<!-- 					paginator="true" rowsPerPageTemplate="5,10" -->
+<!-- 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" -->
+<!-- 					gridIcon="pi pi-th-large" listIcon="pi pi-bars"> -->
+
+<!-- 					<p:dataViewGridItem> -->
+<!-- 						<div class="setup-grid-item card border-1"> -->
+<!-- 							<div class="setup-grid-item-top"> -->
+<!-- 								<div> -->
+<!-- 									<i class="pi pi-tag setup-category-icon" /> <span -->
+<!-- 										class="setup-category">#{product.category}</span> -->
+<!-- 								</div> -->
+<!-- 								<div class="setup-grid-item-content"> -->
+<!-- 									<p:graphicImage library="imgs" name="setup_gamer.jpg" /> -->
+<!-- 									<div class="setup-name">#{product.name}</div> -->
+<!-- 									<div class="setup-description">#{setup.description}</div> -->
+<!-- 									<p:rating readonly="true" value="0" /> -->
+<!-- 								</div> -->
+<!-- 								<div class="setup-grid-item-bottom"> -->
+<!-- 									<h:outputText value="#{setup.price}" styleClass="setup-price"> -->
+<!-- 										<f:convertNumber currencySymbol="$" type="currency" /> -->
+<!-- 									</h:outputText> -->
+<!-- 									<p:commandButton type="button" value="Details" -->
+<!-- 										icon="pi pi-search"> -->
+<!-- 									</p:commandButton> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</p:dataViewGridItem> -->
+
+<!-- 					<p:dataViewListItem> -->
+<!-- 						<div class="setup-list-item"> -->
+<!-- 							<p:graphicImage library="imgs" name="setup_gamer.jpg" /> -->
+<!-- 							<div class="setup-list-detail"> -->
+<!-- 								<div class="setup-name">#{setup.name}</div> -->
+<!-- 								<div class="setup-description">#{setup.description}</div> -->
+<!-- 								<p:rating value="0" /> -->
+<!-- 							</div> -->
+<!-- 							<div class="setup-list-action"> -->
+<!-- 								<h:outputText value="#{setup.price}" styleClass="setup-price"> -->
+<!-- 									<f:convertNumber currencySymbol="R$" type="currency" /> -->
+<!-- 								</h:outputText> -->
+<!-- 								<p:commandButton type="button" value="Details" -->
+<!-- 									icon="pi pi-search"> -->
+<!-- 								</p:commandButton> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</p:dataViewListItem> -->
+<!-- 				</p:dataView> -->
+<!-- 			</h:form> -->
+<!-- 		</div> -->
+
+		<div class="card">
+			<h:form id="form-profiles">
+				<p:dataTable id="profiles" var="profile"
+					value="#{profileBean.profiles}" rowKey="#{profile.id}"
+					selectionMode="single">
+					<f:facet name="header">
+				                Profile List
+				            </f:facet>
+					<p:column headerText="Name">
+						<h:outputText value="#{profile.name}" />
+					</p:column>
+
+					<p:column headerText="Birth Date">
+						<h:outputText value="#{profile.birthDate}" />
+					</p:column>
+
+					<p:column headerText="Email">
+						<h:outputText value="#{profile.email}" />
+					</p:column>
+				</p:dataTable>
+
+				<p:contextMenu for="profiles">
+					<p:menuitem value="Delete" update="profiles" icon="pi pi-times"
+						action="#{profileBean.executar()}" />
+				</p:contextMenu>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

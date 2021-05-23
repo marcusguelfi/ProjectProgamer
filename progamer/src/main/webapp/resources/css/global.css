@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+body {
+	background: #eee;
+}
+
+.card-form {
+	width: 25em;
+	margin: 10px auto;
+}
+
+button.cancel-button {
+	margin-left: 0.5em;
+}
+
+/*--List--*/
+.setup-list-item {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.setup-list-item img {
+	width: 150px;
+	margin-right: 2rem;
+	box-shadow: 0 3px 6px rgb(0 0 0/ 16%), 0 3px 6px rgb(0 0 0/ 23%);
+}
+
+.setup-name {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.setup-list-detail {
+	flex: 1 1 0;
+	-ms-flex: 1 1 0;
+}
+
+.setup-description {
+	margin: 0 0 1rem 0;
+}
+
+.setup-price {
+	margin-bottom: .5rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+	align-self: flex-end;
+}
+
+.setup-list-action {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+/*--Grid--*/
+.setup-grid-item.border-1 {
+	border: 1px solid var(- -surface-d);
+}
+
+.setup-grid-item-content {
+	text-align: center;
+}
+
+.setup-grid-item-bottom {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.setup-grid-item img {
+	width: 75%;
+	box-shadow: 0 3px 6px rgb(0 0 0/ 16%), 0 3px 6px rgb(0 0 0/ 23%);
+	margin: 2rem 0;
+}
+
+.card {
+	background: var(- -surface-e);
+	padding: 2rem;
+	box-shadow: 0 2px 1px -1px rgb(0 0 0/ 20%), 0 1px 1px 0 rgb(0 0 0/ 14%),
+		0 1px 3px 0 rgb(0 0 0/ 12%);
+	border-radius: 4px;
+	margin-bottom: 2rem;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+	<ui:composition template="_template.xhtml">
+		<ui:define name="content">
+			<p:messages id="messages">
+				<p:autoUpdate />
+			</p:messages>
+			<h:form>
+				<p:card class="card-form">
+					<f:facet name="title">New Setup</f:facet>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Name" for="name" />
+						<p:inputText id="name" value="#{setupBean.setup.name}"
+							required="true">
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+
+						<p:outputLabel value="Description" for="description" />
+						<p:inputTextarea id="description"
+							value="#{setupBean.setup.description}" required="true"
+							validatorMessage="tamanho do campo deve estar entre 50 e 255">
+							<f:validateLength maximum="255" minimum="50" />
+							<f:ajax event="blur" render="messages" />
+						</p:inputTextarea>
+						<p:outputLabel value="Price" for="price" />
+						<p:inputText id="price" value="#{setupBean.setup.price}"
+							required="true">
+							<f:validateDoubleRange minimum="1" />
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+
+					</h:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton icon="pi pi-check" value="Save"
+							action="#{setupBean.save()}">
+							<f:ajax execute="@form" render="form-setups" />
+						</p:commandButton>
+						<p:commandButton type="button" icon="pi pi-times" value="Cancel"
+							styleClass="cancel-button ui-button-secondary" />
+					</f:facet>
+				</p:card>
+
+			</h:form>
+
+			<div class="card">
+				<h:form id="form-setups">
+					<p:dataTable id="setups" var="setup" value="#{setupBean.setupsByProfile}"
+						rowKey="#{setup.id}" selectionMode="single">
+						<f:facet name="header">
+				                Setups List
+				            </f:facet>
+						<p:column headerText="Name">
+							<h:outputText value="#{setup.name}" />
+						</p:column>
+						<p:column headerText="Description">
+							<h:outputText value="#{setup.description}" />
+						</p:column>
+						<p:column headerText="Price">
+							<h:outputText value="#{setup.price}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:contextMenu for="setups">
+						<p:menuitem value="Delete" update="setups" icon="pi pi-times"
+							action="#{setupBean.executar()}" />
+					</p:contextMenu>
+				</h:form>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

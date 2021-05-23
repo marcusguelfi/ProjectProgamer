@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+	<ui:composition template="_template.xhtml">
+		<ui:define name="menu"/>
+		<ui:define name="content">
+			<p:messages>
+				<p:autoUpdate />
+			</p:messages>
+			<h:form>
+				<p:card class="card-form">
+					<f:facet name="title">login</f:facet>
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Email" for="email" />
+						<p:inputText id="email" value="#{profileBean.profile.email}"
+							required="true">
+							<f:ajax event="blur" render="message-email" />
+						</p:inputText>
+						<p:message for="email" id="message-email"/>
+
+						<p:outputLabel value="Password" for="password" />
+						<p:password id="password" value="#{profileBean.profile.password}"
+							toggleMask="true" redisplay="true" required="true">
+							<f:ajax event="blur" render="message-password" />
+						</p:password>
+						<p:message for="password" id="message-password"/>
+
+					</h:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton icon="pi pi-send" value="Login"
+							action="#{profileBean.login()}">
+							<f:ajax execute="@form" render="form-profiles" />
+						</p:commandButton>
+						<p:messages id="messages" />
+					</f:facet>
+				</p:card>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
